@@ -9,3 +9,5 @@
 .settings
 .classpath
 */target/*
+*/gendir/*
+*/logdir/*
