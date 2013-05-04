@@ -6,7 +6,7 @@
 ##$!{tbb.className}类名，如：UserInfo
 ##$!{tbb.objectName}对象名，如：userInfo
 #set($conf=$!{tbb.conf})
-#set($PO = "DO")
+#set($PO = $!{gb.objSuffix})
 #set($clear = "")
 package $!{gb.packageName}.service;
 

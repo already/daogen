@@ -9,7 +9,7 @@
 ##$!{cb.methodName}字段方法名，如：FullName
 ##$!{cb.propertyType}字段属性类型名，如：String
 ##$!{cb.colComment}字段注释，如：姓名全称
-#set($PO = "DO")
+#set($PO = $!{gb.objSuffix})
 #set($conf=$!{tbb.conf})
 package $!{gb.packageName}.pojo;
 

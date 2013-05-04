@@ -11,7 +11,7 @@
 ##$!{cb.propertyType}字段属性类型名，如：String
 ##$!{gb.packageName}包名，如：com.kifanle.order
 #set($conf=$!{tbb.conf})
-#set($PO = "DO")
+#set($PO = $!{gb.objSuffix})
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap
 PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"

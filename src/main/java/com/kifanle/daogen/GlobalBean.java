@@ -21,7 +21,7 @@ public class GlobalBean {
 	/** 工程所有表List */
 	private List<String> tableNames;
 	
-
+	private String objSuffix="";
 	public String getNowDate() {
 		return nowDate;
 	}
@@ -52,6 +52,14 @@ public class GlobalBean {
 
 	public void setTableNames(List<String> tableNames) {
 		this.tableNames = tableNames;
+	}
+
+	public String getObjSuffix() {
+		return objSuffix;
+	}
+
+	public void setObjSuffix(String objSuffix) {
+		this.objSuffix = objSuffix;
 	}
 	
 }

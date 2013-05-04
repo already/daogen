@@ -148,8 +148,10 @@ public class Gen {
 			for(String vmFilename:javaVmList){
 				if(vmFilename.startsWith("Base")) continue;	 //基类代码跳过
 				if(vmFilename.startsWith("Result")) { this.doSpecialVM(ctx, vmFilename, javaVmDir, javaDir); continue;}
-
 				createFilename = FileUtil.getFilenameWithoutExt(vmFilename);
+				if(createFilename.startsWith("DO.")){
+					createFilename = createFilename.replace("DO", "");
+			    }
 				packageStr = FileUtil.findLine(javaVmDir + "/" + vmFilename, "package");
 				if(StringUtils.isNotBlank(packageStr)){
 					packageStr = packageStr.substring(packageStr.indexOf("$!{gb.packageName}"),packageStr.indexOf(";"));
@@ -157,6 +159,7 @@ public class Gen {
 				}
 				FileUtil.mkDirs(javaDir + packageDir);
 				VelocityTemplate.mergeTemplate(settings.getTmplPath() + PATH_JAVA + "/" + vmFilename, javaDir + packageDir + "/" + tableBean.getClassName() + createFilename, ctx);
+				logger.info(tableBean.getClassName() + createFilename);
 			}
 			//生成SqlMap配置文件
 			String sqlmapVm = settings.getTmplPath() + PATH_RESOURCES + "sqlmap/-sqlmap.xml.vm";
