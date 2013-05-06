@@ -21,8 +21,9 @@ DB_USER = root
 DB_PWD = root
 JAVA_PACKAGE = com.kifanle.order
 
-在Gen这个类里，
+在Gen这个类，直接执行，会在gendir里生成相关代码。
 
+在Gen可以找到如下代码，进行配置。
 /**
 * 对于dao的生成，暂时特殊定制，硬编码。key 为数据库表名，暂不全量配置
 */
