@@ -4,10 +4,10 @@
 我感觉codeauto比较重，做了一个减法，适用人群为中小项目（mysql），想偷懒的coder。；》谢谢叶大。
 
 生成代码运行（Obj2DbGen（正向生成，基于pojo+注解） Gen（反向生成，基于数据表））
-默认生成在 project/gendir/dao/ibatisdao/src/main/
-                                              |---->java/code
-                                              |---->resources/sql
-                                                 |->resources/sqlmap
+默认生成在 project/gendir/dao/ibatisdao/src/main/<br>
+                                              |---->java/code<br>
+                                              |---->resources/sql<br>
+                                                 |->resources/sqlmap<br>
 
 
 daogen v2.
