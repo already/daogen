@@ -18,6 +18,7 @@ public class SqlType2Feild {
 	private final static Logger logger = Logger.getLogger(SqlType2Feild.class);
 	
 	private static Map<Integer,String> sqltype2Feild = new HashMap<Integer,String>();
+	
 	static {
 		sqltype2Feild.put(Types.VARCHAR, "String");
 		sqltype2Feild.put(Types.DATE, "Date");	//java.util.Date
@@ -46,6 +47,7 @@ public class SqlType2Feild {
 		sqltype2Feild.put(Types.CLOB, "Clob");	//java.sql.Clob
 	}
 
+
 	public static String mapJavaType(int sqltype) {
 		String javaType = sqltype2Feild.get(sqltype);
 		if(StringUtils.isNotBlank(javaType)){
@@ -55,4 +57,54 @@ public class SqlType2Feild {
 			return "String";
 		}
 	}
+	
+	private static Map<String,String> javaToMysql = new HashMap<String,String>();
+	static{
+		javaToMysql.put("java.lang.String", "varchar");
+		javaToMysql.put("java.lang.String_t", "text");
+		javaToMysql.put("java.lang.Long", "bigint");
+		javaToMysql.put("long", "bigint");
+		javaToMysql.put("java.lang.Byte", "tinyint");
+		javaToMysql.put("byte", "tinyint");
+		javaToMysql.put("java.lang.Integer", "int");
+		javaToMysql.put("int", "int");
+		javaToMysql.put("java.lang.Double", "double");
+		javaToMysql.put("double", "double");
+		javaToMysql.put("java.lang.Float", "float");
+		javaToMysql.put("float", "float");
+		javaToMysql.put("java.util.Date", "datetime");
+	}
+	
+	public static String getColType(String jType){
+		return javaToMysql.get(jType);
+	}
+	
+	private static Map<String,Integer> field2Sqltype = new HashMap<String,Integer>();
+	
+	static{
+		field2Sqltype.put("java.lang.String", Types.VARCHAR);
+		field2Sqltype.put("java.lang.String_t", Types.LONGNVARCHAR);
+		field2Sqltype.put("java.lang.Long", Types.BIGINT);
+		field2Sqltype.put("long", Types.BIGINT);
+		field2Sqltype.put("java.lang.Byte", Types.TINYINT);
+		field2Sqltype.put("byte", Types.TINYINT);
+		field2Sqltype.put("java.lang.Integer", Types.INTEGER);
+		field2Sqltype.put("int", Types.INTEGER);
+		field2Sqltype.put("java.lang.Double", Types.DOUBLE);
+		field2Sqltype.put("double", Types.DOUBLE);
+		field2Sqltype.put("java.lang.Float", Types.FLOAT);
+		field2Sqltype.put("float", Types.FLOAT);
+		field2Sqltype.put("java.util.Date", Types.DATE);
+	}
+	
+	public static int javaType2sqlType(String jType){
+		Integer sqltype = field2Sqltype.get(jType);
+		if(null!=sqltype){
+			return sqltype;
+		}else{
+			return -1;
+		}
+		
+	}
+	
 }

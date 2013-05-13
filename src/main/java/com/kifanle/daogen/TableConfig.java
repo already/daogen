@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 
+ * 此类用来定制DAO方法产生
  * @author microboss
  *
  */

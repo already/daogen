@@ -5,7 +5,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.kifanle.daogen.obj2db.Obj2DbGen;
 import com.kifanle.daogen.util.CharUtil;
+
 
 public class TableBean {
 	/**================表结构信息======================*/
@@ -21,6 +23,26 @@ public class TableBean {
 		return this;
 	}
 	
+	private String engine;
+	
+	public String getEngine() {
+		return engine;
+	}
+
+	public void setEngine(String engine) {
+		this.engine = engine;
+	}
+
+	private String charset;
+	
+	public String getCharset() {
+		return charset;
+	}
+
+	public void setCharset(String charset) {
+		this.charset = charset;
+	}
+
 	private TableConfig conf;
 	
 	public TableBean(String tableName){
@@ -34,6 +56,12 @@ public class TableBean {
 				.get(tableName)) ? Gen.tconfig.get(tableName) : Gen.tconfig
 				.get(tableName));
 	}
+	
+	public static TableBean build2(String tableName) {
+		return new TableBean(tableName).setConf((null != Obj2DbGen.tconfig
+				.get(tableName)) ? Obj2DbGen.tconfig.get(tableName) : Obj2DbGen.tconfig
+				.get(tableName));
+	} 
 	/**================根据表结构生成表对象及字段信息======================*/
 	/** 类名 */
 	private String className;
@@ -47,8 +75,15 @@ public class TableBean {
 
 	private Map<String,ColBean> colMap = new LinkedHashMap<String,ColBean>();
 	
+	/** 索引列表 */
+	private List<IndexBean> indexList = new ArrayList<IndexBean>();
+	
 	public List<ColBean> getColList() {
 		return colList;
+	}
+
+	public List<IndexBean> getIndexList() {
+		return indexList;
 	}
 
 	public TableBean setColList(List<ColBean> colList) {
@@ -63,12 +98,17 @@ public class TableBean {
 		return this.colMap;
 	}
 
-	public TableBean addColBean(ColBean bean) {
-		this.colList.add(bean);
-		this.colMap.put(bean.getColName(), bean);
+	public TableBean addColBean(ColBean colBean) {
+		this.colList.add(colBean);
+		this.colMap.put(colBean.getColName(), colBean);
 		return this;
 	}
 
+	public TableBean addIndexBean(IndexBean indexBean){
+		this.indexList.add(indexBean);
+		return this;
+	}
+	
 	public String getClassName() {
 		return className;
 	}

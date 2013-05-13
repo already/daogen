@@ -66,28 +66,6 @@ public class GenTable {
 	}
 	
 	private boolean checkTableBean(TableBean tableBean){
-		// 校验主键是否为空
-//		if (tableBean.getPkcol() == null) {
-//			logger.error("表["+tableBean.getTableName()+"]自增主键不存在,不生成此表DAO层代码！");
-//			return false;
-//		}
-		// 校验主键是否命名为id,？为啥一定要设置为id？
-//		if (!"id".equals(tableBean.getPkcol().getColName())) {
-//			logger.error("表["+tableBean.getTableName()+"]主键命名不是id,不生成此表DAO层代码！");
-//			return false;
-//		}
-		// 校验字段中是否含有gmt_create或gmt_modified，此处为淘宝定制，一定要的字段
-//		List<ColBean> cbList = tableBean.getColList();
-//		boolean hasGmtCreate = false;
-//		boolean hasGmtModified = false;
-//		for(ColBean cb:cbList){
-//			if("gmtCreate".equals(cb.getPropertyName())) hasGmtCreate = true;
-//			if("gmtModified".equals(cb.getPropertyName())) hasGmtModified = true;
-//		}
-//		if(!hasGmtCreate||!hasGmtModified){
-//			logger.error("表["+tableBean.getTableName()+"]没有gmt_create或gmt_modified字段,不生成此表DAO层代码！");
-//			return false;
-//		}
 		return true;
 	}
 

@@ -1,0 +1,33 @@
+##Mysql-DDL语句生成模版
+##使用到的变量有：
+##$!{tbb.tableName}表名，如：user_info
+##$!{tbb.tableComment}表注释，如：招商申请
+##$!{tbb.colList}表字段列表
+##$!{tbb.indexList}表索引列表
+##$!{cb.colName}字段列名，如：full_name
+##$!{cb.colComment}字段注释，如：姓名全称
+##$!{cb.colType}字段列类型，如：VARCHAR
+##$!{cb.precision}字段列长度，如：20
+##$!{cb.scale}字段列小数位精度，如：3
+##$!{cb.nullable}是否可为空，如：true
+##$!{cb.defaultValue}缺省值，如：NULL
+##$!{cb.pK}是否主键，如：true
+##$!{cb.autoIncrement}是否自增字段，如：true
+##$!{ib.indexName}索引名称，如：IDX_TabelName_Name
+##$!{ib.indexColumns}索引字段，如：id,status
+##$!{ib.unique}索引是否唯一，如：true
+##$!{ib.primary}索引是否主键，如：true
+##$!{velocityCount}循环次数
+#foreach($tbb in $tbbList)
+--Create Table
+drop table if exists $!{tbb.tableName};
+CREATE TABLE `$!{tbb.tableName}` (
+#foreach($cb in $tbb.colList)
+  `$!{cb.colName}` $!{cb.colType}#if($!{cb.colType}!="datetime"&&$!{cb.colType}!="timestamp")#if($!{cb.scale}>0&&($!{cb.colType}=="double"||$!{cb.colType}=="float"))($!{cb.precision},$!{cb.scale})#elseif($!{cb.colType}!="text")($!{cb.precision})#end #end #if(!$!{cb.nullable})NOT NULL#end #if($!{cb.defaultValue})DEFAULT $!{cb.defaultValue}#end #if($!{cb.autoIncrement})AUTO_INCREMENT#end COMMENT '$!{cb.colComment}',
+#end
+#foreach($ib in $tbb.indexList)
+  #if($!{ib.primary})PRIMARY KEY#elseif($!{ib.unique})UNIQUE KEY `$!{ib.indexName}`#else KEY `$!{ib.indexName}`#end (`$!{ib.indexColumns}`)#if($velocityCount!=$tbb.indexList.size()),#end
+  
+#end
+)ENGINE=$!{tbb.engine} DEFAULT CHARSET=$!{tbb.charset};
+#end

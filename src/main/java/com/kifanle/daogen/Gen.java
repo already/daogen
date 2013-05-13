@@ -195,7 +195,6 @@ public class Gen {
 		ctxCfg.put("gb", globalBean); //设置全局信息
 		ctxCfg.put("sysInit", settings);	//设置系统信息
 		ctxCfg.put("stringUtil", new StringUtil()); //设置StringUtil
-		
 		try {
 			//生成Java基类代码
 			String javaVmDir = SOURCE_IN_PATH + settings.getTmplPath() + PATH_JAVA;

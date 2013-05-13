@@ -25,17 +25,34 @@ public class CharUtil {
 			return (char) (c + 32);
 	}
 	
+	public static boolean isLowerCase(char c){
+		return (c>='a'&&c<='z');
+	}
+	
+	public static boolean isUpperCase(char c){
+		return (c>='A'&&c<='Z');
+	}
+	
+	public static String getLowerCaseNames(String names){
+		StringBuilder sb = new StringBuilder();
+		char[] cc = names.toCharArray();
+		sb.append(toLowerCase(cc[0]));
+		for(int i=1;i<cc.length;i++){
+			if(isLowerCase(cc[i-1])&&isUpperCase(cc[i])){
+				sb.append("_"+toLowerCase(cc[i]));
+			}else{
+				sb.append(toLowerCase(cc[i]));
+			}
+		};
+		return sb.toString();
+	}
+	
 	public static void main(String[] args) {
-		String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		char[] u = upperCase.toCharArray();
-		for(int i=0;i<u.length;i++){
-			System.out.print(CharUtil.toLowerCase(u[i])+"("+(int)u[i]+")");
-		}
-		System.out.println();
-		String lowerCase = "abcdefghijklmnopqrstuvwxyz";
-		char[] l = lowerCase.toCharArray();
-		for(int i=0;i<l.length;i++){
-			System.out.print(CharUtil.toUpperCase(l[i])+"("+(int)l[i]+")");
-		}
+		System.out.println(isLowerCase('C'));
+		String s ="assAsddAddd";
+		String s1 ="UserInfo";
+		System.out.println(getLowerCaseNames(s1));
+		String s2 ="hserInfo";
+		System.out.println(getLowerCaseNames(s2));
 	}
 }
