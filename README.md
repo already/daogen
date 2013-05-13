@@ -4,10 +4,11 @@
 我感觉codeauto比较重，做了一个减法，适用人群为中小项目（mysql），想偷懒的coder。；》谢谢叶大。
 
 生成代码运行（Obj2DbGen（正向生成，基于pojo+注解） Gen（反向生成，基于数据表））
-默认生成在 project/gendir/dao/ibatisdao/src/main/<br>
-                                              |---->java/code<br>
-                                              |---->resources/sql<br>
-                                                 |->resources/sqlmap<br>
+默认生成在 <br>
+project/gendir/dao/ibatisdao/src/main/<br>
+                                   |---->java/code<br>
+                                   |---->resources/sql<br>
+                                   |->resources/sqlmap<br>
 
 
 daogen v2.
@@ -15,45 +16,45 @@ daogen v2.
  v2.增加代码工具正向生成功能，pojo类+注解 ，生成ibatis的sqlmap文件、 dao、 pojo、 sql
 脚本，保留版本v1的代码定制功能，相关的pojo类需要写在类包com.kifanle.daogen.obj2db.pojos下。
 有两注解Table和Column。运行类Obj2DbGen即可。代码定制方法参照v1.版本说明。
-例子如下
-@Table(engine=Engine.INNODB,charset=Charset.UTF8)
-public class User {
-@Column(autoInc=true,comment="主键",primaryKey=true,nullable=false)
-private int id = 2678;
-@Column(length=255,comment="姓名")
-private String name;
-@Column(length=255,comment="昵称")
-private String nickName;
-@Column(length=255,comment="家庭住址",datatype=Datatype.Text,nullable=true)
-private String address;
-@Column(defaultVal="0",comment="测试字段iid",length=20,nullable=true)
-private Long iid;
-@Column(defaultVal="0",comment="测试字段iid2",length=20,nullable=false)
-private Long iid2;
-@Column(length=100,comment="邮件",nullable=false)
-private String email;
-@Column(length=4,comment="性别",nullable=false,defaultVal="0")
-private byte gender;
-}
+例子如下<br>
+@Table(engine=Engine.INNODB,charset=Charset.UTF8)<br>
+public class User {<br>
+@Column(autoInc=true,comment="主键",primaryKey=true,nullable=false)<br>
+private int id = 2678;<br>
+@Column(length=255,comment="姓名")<br>
+private String name;<br>
+@Column(length=255,comment="昵称")<br>
+private String nickName;<br>
+@Column(length=255,comment="家庭住址",datatype=Datatype.Text,nullable=true)<br>
+private String address;<br>
+@Column(defaultVal="0",comment="测试字段iid",length=20,nullable=true)<br>
+private Long iid;<br>
+@Column(defaultVal="0",comment="测试字段iid2",length=20,nullable=false)<br>
+private Long iid2;<br>
+@Column(length=100,comment="邮件",nullable=false)<br>
+private String email;<br>
+@Column(length=4,comment="性别",nullable=false,defaultVal="0")<br>
+private byte gender;<br>
+}<br>
 
 ======                     
 daogen v1.
 ======
-主要借用了codeauto的元数据解析那块的代码。
-ibatis db反向生成工具。包括dao sqlmap文件
-codeauto 的区别，去掉oracle的区别，重写了部分sql生成的vm模板。
-增对表的增删改查，分页，和特殊方法查询，增加了TableConfig类，增对代码生成方面做到细粒度定制。
+主要借用了codeauto的元数据解析那块的代码。<br>
+ibatis db反向生成工具。包括dao sqlmap文件<br>
+codeauto 的区别，去掉oracle的区别，重写了部分sql生成的vm模板。<br>
+增对表的增删改查，分页，和特殊方法查询，增加了TableConfig类，增对代码生成方面做到细粒度定制。<br>
 
 ======
 
-简单实用教程。
-可以在db.properties里配置
-DB_TYPE = Mysql
-DB_SERVER = 127.0.0.1
-DB_NAME = chifan
-DB_USER = root
-DB_PWD = root
-JAVA_PACKAGE = com.kifanle.order
+简单实用教程。<br>
+可以在db.properties里配置<br>
+DB_TYPE = Mysql<br>
+DB_SERVER = 127.0.0.1<br>
+DB_NAME = chifan<br>
+DB_USER = root<br>
+DB_PWD = root<br>
+JAVA_PACKAGE = com.kifanle.order<br>
 
 在Gen这个类，直接执行，会在gendir里生成相关代码。
 
