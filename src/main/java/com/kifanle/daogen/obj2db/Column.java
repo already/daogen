@@ -30,7 +30,7 @@ public @interface Column {
 	/**注释*/
 	public String comment() default "";
 	/**可否为空*/
-	public boolean nullable() default false;
+	public boolean nullable() default true;
 	/**特殊字段设置，比如pojo field 为String时，可能是varchar 或者 text*/
 	public Datatype datatype() default Datatype.None;
 }

@@ -66,6 +66,7 @@ public class $!{tbb.className}DAO {
 #end
 	
 #if($conf.isGetByKeys())
+	@SuppressWarnings("unchecked")
     public List<$!{tbb.className}${PO}> get$!{tbb.className}${PO}sByKeys(List<Long> $!{tbb.pkcol.propertyName}s) throws SQLException {
 		if ($!{tbb.pkcol.propertyName}s.isEmpty()) {
 			return Collections.emptyList();

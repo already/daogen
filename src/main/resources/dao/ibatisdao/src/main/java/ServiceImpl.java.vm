@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.Collections;
 
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 #foreach($cb in $tbb.colList)
 #if($!{cb.propertyType}=="Clob"&&!$clob)
 import java.sql.Clob;
@@ -35,7 +33,6 @@ import java.math.BigDecimal;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import javax.annotation.Resource;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import $!{gb.packageName}.pojo.$!{tbb.className}${PO};
 import $!{gb.packageName}.dao.$!{tbb.className}DAO;

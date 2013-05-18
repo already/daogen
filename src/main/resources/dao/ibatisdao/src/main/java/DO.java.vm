@@ -13,7 +13,10 @@
 #set($conf=$!{tbb.conf})
 package $!{gb.packageName}.pojo;
 
+import java.io.Serializable;
+#if($conf.isUpdateObj())
 import java.util.List;
+#end
 #foreach($cb in $tbb.colList)
 #if($!{cb.propertyType}=="Clob"&&!$clob)
 import java.sql.Clob;
@@ -35,7 +38,7 @@ import java.math.BigDecimal;
  * @author $!{gb.userName}
  * @since $!{gb.nowDate}
  */
-public class $!{tbb.className}${PO}{
+public class $!{tbb.className}${PO} implements Serializable{
 
 	/** 序列化ID */
 	private static final long serialVersionUID = 1L;
